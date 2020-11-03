@@ -25,6 +25,7 @@ async function run() {
                     description VARCHAR(512) NOT NULL,
                     category VARCHAR(512) NOT NULL,
                     price INTEGER NOT NULL,
+                    on_sale BOOLEAN NOT NULL,
                     supplier_id INTEGER NOT NULL REFERENCES suppliers(id)
             );
         `);

@@ -12,16 +12,20 @@ async function run() {
 
     // run a query to create tables
     await client.query(`
-                CREATE TABLE users (
+                CREATE TABLE suppliers (
                     id SERIAL PRIMARY KEY,
-                    email VARCHAR(256) NOT NULL,
+                    supplier VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );           
-                CREATE TABLE animals (
+                CREATE TABLE coffees (
                     id SERIAL PRIMARY KEY NOT NULL,
+                    name_id VARCHAR(512) NOT NULL,
                     name VARCHAR(512) NOT NULL,
-                    cool_factor INTEGER NOT NULL,
-                    owner_id INTEGER NOT NULL REFERENCES users(id)
+                    image VARCHAR(512) NOT NULL,
+                    description VARCHAR(512) NOT NULL,
+                    category VARCHAR(512) NOT NULL,
+                    price INTEGER NOT NULL,
+                    supplier_id INTEGER NOT NULL REFERENCES suppliers(id)
             );
         `);
 

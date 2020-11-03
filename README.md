@@ -18,7 +18,7 @@ const authRoutes = createAuthRoutes({
     selectUser(email) {
         return client.query(`
             SELECT id, email, hash
-            FROM users
+            FROM suppliers
             WHERE email = $1;
         `,
         [email]
@@ -27,7 +27,7 @@ const authRoutes = createAuthRoutes({
     insertUser(user, hash) {
         console.log(user);
         return client.query(`
-            INSERT into users (email, hash)
+            INSERT into suppliers (email, hash)
             VALUES ($1, $2)
             RETURNING id, email;
         `,

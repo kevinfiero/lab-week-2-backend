@@ -3,6 +3,7 @@ const client = require('../lib/client');
 const coffees = require('./coffees.js');
 const suppliersData = require('./suppliers.js');
 const { getEmoji } = require('../lib/emoji.js');
+const usersData = require('./users.js');
 
 run();
 
@@ -10,6 +11,17 @@ async function run() {
 
   try {
     await client.connect();
+
+    await Promise.all(
+      usersData.map(user => {
+        return client.query(`
+                      INSERT INTO users (email, hash)
+                      VALUES ($1, $2)
+                      RETURNING *;
+                  `,
+        [user.email, user.hash]);
+      })
+    );
 
     const suppliers = await Promise.all(
       suppliersData.map(supplier => {

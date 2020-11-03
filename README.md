@@ -1,1 +1,1 @@
-# lab06-backend
+# lab-week-2-backend

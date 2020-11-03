@@ -17,6 +17,11 @@ async function run() {
                     supplier VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );           
+                CREATE TABLE users (
+                  id SERIAL PRIMARY KEY,
+                  email VARCHAR(256) NOT NULL,
+                  hash VARCHAR(512) NOT NULL
+              );          
                 CREATE TABLE coffees (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name_id VARCHAR(512) NOT NULL,

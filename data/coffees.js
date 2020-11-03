@@ -82,7 +82,7 @@ module.exports = [
   {
       name_id: 'mordecofe-12oz',
       name: 'Ethiopia Mordecofe',
-      image: 'mordecofe.png',
+      image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1949/large/Mordecofe2020sm.png?1595862297',
       description: '12oz Ethiopia Mordecofe',
       category: 'Single Origin Organic',
       price: 20

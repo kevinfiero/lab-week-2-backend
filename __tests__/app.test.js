@@ -1,7 +1,5 @@
 require('dotenv').config();
-
 const { execSync } = require('child_process');
-
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
@@ -15,7 +13,7 @@ describe('app routes', () => {
   
       client.connect();
   
-      // const signInData = await fakeRequest(app)
+      // const signInData = fakeRequest(app)
       //   .post('/auth/signup')
       //   .send({
       //     email: 'jon@user.com',
@@ -31,9 +29,7 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-  test('returns coffees', async() => {
-
-    const expectation = [
+    const coffeeArray = [
       {
           id: 1,
           name_id: 'french-roast-12oz',
@@ -157,13 +153,137 @@ describe('app routes', () => {
       }
     ];
 
+  test('returns coffees', async() => {
+
+    const expectation = coffeeArray;
     const data = await fakeRequest(app)
       .get('/coffees')
       .expect('Content-Type', /json/)
       .expect(200);
 
     expect(data.body).toEqual(expectation);
-
   });
+
+  test('returns single coffee by ID', async() => {
+    const expectation = {
+      id: 2,
+      name_id: 'hair-bender-12oz',
+      name: 'Hair Bender',
+      image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1692/large/media.nl?1524324843',
+      description: '12oz Hair Bender',
+      category: 'Organic',
+      price: 15,
+      on_sale: true,
+      supplier_id: 1
+    };
+
+    const data = await fakeRequest(app)
+    
+      .get('/coffees/2')
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    expect(data.body).toEqual(expectation);
+  });
+
+  test('add single coffee', async() => {
+    const expectation = {
+      id: 12,
+      name_id: 'bella-vista-12oz',
+      name: 'Bella Vista',
+      image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1987/large/media.nl?1600103615',
+      description: '12oz Bella Vista',
+      category: 'Organic',
+      price: 20,
+      on_sale: false,
+      supplier_id: 1
+    };
+
+    const data = await fakeRequest(app)
+      .post('/coffees')
+      .send({
+        name_id: 'bella-vista-12oz',
+        name: 'Bella Vista',
+        image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1987/large/media.nl?1600103615',
+        description: '12oz Bella Vista',
+        category: 'Organic',
+        price: 20,
+        on_sale: false,
+        supplier_id: 1
+      })
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    const allCoffees = await fakeRequest(app)
+      .get('/coffees')
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+
+    expect(data.body).toEqual(expectation);
+    expect(allCoffees.body.length).toEqual(12);
+  });
+
+  test('alter single coffee', async() => {
+    const expectation = {
+      id: 12,
+      name_id: 'bella-vista-extreme-12oz',
+      name: 'Bella Vista Extreme',
+      image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1987/large/media.nl?1600103615',
+      description: '12oz Bella Vista Extreme',
+      category: 'Organic',
+      price: 12,
+      on_sale: true,
+      supplier_id: 1
+    };
+
+    const data = await fakeRequest(app)
+      .put('/coffees/12')
+      .send({
+        name_id: 'bella-vista-extreme-12oz',
+        name: 'Bella Vista Extreme',
+        image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1987/large/media.nl?1600103615',
+        description: '12oz Bella Vista Extreme',
+        category: 'Organic',
+        price: 12,
+        on_sale: true,
+        supplier_id: 1
+      })
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    expect(data.body).toEqual(expectation);
+  });
+
+  test('delete single coffee', async() => {
+    const expectation = {
+      id: 12,
+      name_id: 'bella-vista-extreme-12oz',
+      name: 'Bella Vista Extreme',
+      image: 'https://d1rusy4hxccwbq.cloudfront.net/spree/images/1987/large/media.nl?1600103615',
+      description: '12oz Bella Vista Extreme',
+      category: 'Organic',
+      price: 12,
+      on_sale: true,
+      supplier_id: 1
+    };
+
+    const data = await fakeRequest(app)
+      .delete('/coffees/12')
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    const allCoffees = await fakeRequest(app)
+    .get('/coffees')
+    .expect('Content-Type', /json/)
+    .expect(200);
+
+
+    expect(data.body).toEqual(expectation);
+    expect(allCoffees.body.length).toEqual(11);
+  });
+
+
+
 });
 });

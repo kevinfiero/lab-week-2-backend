@@ -6,7 +6,8 @@ module.exports = [
       description: '12oz French Roast',
       category: 'Organic',
       price: 16,
-      on_sale: false
+      on_sale: false,
+      supplier_id: 1
   },
   {
       name_id: 'hair-bender-12oz',
@@ -15,7 +16,8 @@ module.exports = [
       description: '12oz Hair Bender',
       category: 'Organic',
       price: 15,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 1
   },
   {
       name_id: 'holler-mountatin-12oz',
@@ -24,7 +26,8 @@ module.exports = [
       description: '12oz Holler Mountain',
       category: 'Organic',
       price: 16,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 1
   },
   {
       name_id: 'house-blend-12oz',
@@ -33,7 +36,8 @@ module.exports = [
       description: '12oz House Blend',
       category: 'Organic',
       price: 15,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 1
   },
   {
       name_id: 'trapper-creek-12oz',
@@ -42,7 +46,8 @@ module.exports = [
       description: '12oz Trapper Creek',
       category: 'Organic',
       price: 16,
-      on_sale: false
+      on_sale: false,
+      supplier_id: 1
   },
   {
       name_id: 'el-puente-12oz',
@@ -51,7 +56,8 @@ module.exports = [
       description: '12oz Honduras El Puente',
       category: 'Single Origin Organic',
       price: 20,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 2
   },
   {
       name_id: 'el-injerto-bourbon-12oz',
@@ -60,7 +66,8 @@ module.exports = [
       description: '12oz Guatemala El Injerto Bourbon',
       category: 'Single Origin Organic',
       price: 20,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 2
   },
   {
       name_id: 'montes-de-oro-12oz',
@@ -69,7 +76,8 @@ module.exports = [
       description: '12oz Costa Rica Montes De Oro',
       category: 'Single Origin Organic',
       price: 22,
-      on_sale: false
+      on_sale: false,
+      supplier_id: 2
   },
   {
       name_id: 'bies-penantan-12oz',
@@ -78,7 +86,8 @@ module.exports = [
       description: '12oz Indonesia Bies Penatan',
       category: 'Single Origin Organic',
       price: 19,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 2
   },
   {
       name_id: 'ndaroini-12oz',
@@ -87,7 +96,8 @@ module.exports = [
       description: '12oz Kenya Ndaroini',
       category: 'Single Origin Organic',
       price: 19,
-      on_sale: false
+      on_sale: false,
+      supplier_id: 2
   },
   {
       name_id: 'mordecofe-12oz',
@@ -96,6 +106,7 @@ module.exports = [
       description: '12oz Ethiopia Mordecofe',
       category: 'Single Origin Organic',
       price: 20,
-      on_sale: true
+      on_sale: true,
+      supplier_id: 2
   }
 ];

@@ -23,26 +23,24 @@ async function run() {
       })
     );
 
-    const suppliers = await Promise.all(
+    await Promise.all(
       suppliersData.map(supplier => {
         return client.query(`
-                      INSERT INTO suppliers (supplier, hash)
-                      VALUES ($1, $2)
+                      INSERT INTO suppliers (supplier)
+                      VALUES ($1)
                       RETURNING *;
                   `,
-        [supplier.supplier, supplier.hash]);
+        [supplier.supplier]);
       })
     );
       
-    const supplier = suppliers[0].rows[0];
-
     await Promise.all(
       coffees.map(coffee => {
         return client.query(`
                     INSERT INTO coffees (name_id, name, image, description, category, price, on_sale, supplier_id)
                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
                 `,
-        [coffee.name_id, coffee.name, coffee.image, coffee.description, coffee.category, coffee.price, coffee.on_sale, supplier.id]);
+        [coffee.name_id, coffee.name, coffee.image, coffee.description, coffee.category, coffee.price, coffee.on_sale, coffee.supplier_id]);
       })
     );
     

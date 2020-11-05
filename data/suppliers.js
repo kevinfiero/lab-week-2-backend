@@ -1,6 +1,8 @@
 module.exports = [
   {
-    supplier: 'Stumptown',
-    hash: 1234
+    supplier: 'Stumptown - West',
+  },
+  {
+    supplier: 'Stumptown - East',
   }
 ];

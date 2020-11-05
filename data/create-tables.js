@@ -14,8 +14,7 @@ async function run() {
     await client.query(`
                 CREATE TABLE suppliers (
                     id SERIAL PRIMARY KEY,
-                    supplier VARCHAR(256) NOT NULL,
-                    hash VARCHAR(512) NOT NULL
+                    supplier VARCHAR(256) NOT NULL
                 );           
                 CREATE TABLE users (
                   id SERIAL PRIMARY KEY,
